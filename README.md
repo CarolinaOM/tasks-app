@@ -23,18 +23,29 @@ Una aplicación de lista de tareas simple y eficiente, construida con React y Ty
 
 ---
 
-### Instalación
+### ⚙️ Instalación
 
-Para ejecutar este proyecto de forma local, sigue estos pasos:
+Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.
 
-1.  Clona este repositorio:
-    `git clone https://github.com/CarolinaOM/tasks-app.git`
-2.  Navega a la carpeta del proyecto:
-    `cd tasks-app`
-3.  Instala las dependencias:
-    `npm install`
+1.  Clona el repositorio desde GitHub:
+    ```bash
+    git clone <URL del repositorio>
+    ```
+
+2.  Navega al directorio del proyecto:
+    ```bash
+    cd <nombre-del-proyecto>
+    ```
+
+3.  Instala las dependencias necesarias:
+    ```bash
+    npm install
+    ```
+
 4.  Inicia el servidor de desarrollo:
-    `npm run dev`
+    ```bash
+    npm run dev
+    ```
 
 ---
 
