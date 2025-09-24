@@ -1,25 +1,26 @@
-import { type TaskId, type Task as TaskType, type TaskTitle } from "./types";
+import { type TaskId, type Task as TaskType, type TaskTitle } from "./types.d";
 
-export enum TaskActionType {
-  Add = "ADD_TASK",
-  Remove = "REMOVE_TASK",
-  Complete = "COMPLETE_TASK",
-  Update = "UPDATE_TASK",
-  ClearCompleted = "CLEAR_COMPLETED",
-  Initialize = "INITIALIZE_TASKS", // Agrega el nuevo tipo
-}
+// Cambia el enum a un objeto para solucionar el error de sintaxis
+export const TaskActionType = {
+  Add: "ADD_TASK",
+  Remove: "REMOVE_TASK",
+  Complete: "COMPLETE_TASK",
+  Update: "UPDATE_TASK",
+  ClearCompleted: "CLEAR_COMPLETED",
+  Initialize: "INITIALIZE_TASKS", // El nombre correcto de la acción
+} as const;
 
 export type TaskAction =
-  | { type: TaskActionType.Add; payload: { title: TaskTitle['title'] } }
-  | { type: TaskActionType.Remove; payload: { id: TaskId['id'] } }
-  | { type: TaskActionType.Complete; payload: { id: TaskId['id'], completed: TaskType['completed'] } }
-  | { type: TaskActionType.Update; payload: { id: TaskId['id'], title: TaskType['title'] } }
-  | { type: TaskActionType.ClearCompleted }
-  | { type: TaskActionType.Initialize; payload: { tasks: TaskType[] } }; // Agrega la nueva acción
+  | { type: typeof TaskActionType.Add; payload: { title: TaskTitle['title'] } }
+  | { type: typeof TaskActionType.Remove; payload: { id: TaskId['id'] } }
+  | { type: typeof TaskActionType.Complete; payload: { id: TaskId['id'], completed: TaskType['completed'] } }
+  | { type: typeof TaskActionType.Update; payload: { id: TaskId['id'], title: TaskType['title'] } }
+  | { type: typeof TaskActionType.ClearCompleted }
+  | { type: typeof TaskActionType.Initialize; payload: { tasks: TaskType[] } };
 
 export const taskReducer = (state: TaskType[], action: TaskAction): TaskType[] => {
   switch (action.type) {
-    case TaskActionType.Initialize: // Nuevo caso para inicializar el estado
+    case TaskActionType.Initialize:
       return action.payload.tasks;
     case TaskActionType.Add:
       const { title } = action.payload;
@@ -31,7 +32,6 @@ export const taskReducer = (state: TaskType[], action: TaskAction): TaskType[] =
           completed: false,
         },
       ];
-    // ... (resto de tus casos)
     case TaskActionType.Remove:
       const { id: removeId } = action.payload;
       return state.filter((task) => task.id !== removeId);

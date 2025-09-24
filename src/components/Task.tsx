@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, type FC } from 'react';
-import { type TaskId, type Task as TaskType } from '../types';
+import { type TaskId, type Task as TaskType } from '../types.d';
 
 interface Props extends TaskType {
   onRemoveTask: ({ id }: TaskId) => void;

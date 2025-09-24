@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { type TaskTitle } from '../types'
+import { type TaskTitle } from '../types.d'
 
 interface Props {
   saveTask: ({ title}: TaskTitle) => void

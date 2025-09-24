@@ -1,6 +1,6 @@
 import { useReducer, useState, useEffect, type JSX} from "react";
 import { Tasks } from "./components/Tasks";
-import {type FilterValue, type TaskId, type TaskTitle, type Task as TaskType } from "./types";
+import {type FilterValue, type TaskId, type TaskTitle, type Task as TaskType } from "./types.d";
 import { TASK_FILTERS } from "./consts";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header"; 
@@ -10,7 +10,7 @@ import { taskReducer, TaskActionType } from './reducer';
 const API_URL = 'http://localhost:3000/tasks';
 
 const App = (): JSX.Element => {
-  const [tasks, dispatch] = useReducer(taskReducer, []); // Estado inicial vacío
+  const [tasks, dispatch] = useReducer(taskReducer, []);
   const [filterSelected, setFilterSelect] = useState<FilterValue>(TASK_FILTERS.ALL)
 
   // useEffect para cargar las tareas del backend al iniciar la aplicación
@@ -18,13 +18,13 @@ const App = (): JSX.Element => {
     fetch(API_URL)
       .then(res => res.json())
       .then(data => {
-        // Inicializa el estado con los datos del backend
-        dispatch({ type: 'INITIALIZE_TASKS', payload: { tasks: data } });
+        // CORRECCIÓN: Usar el tipo de acción importado del reducer
+        dispatch({ type: TaskActionType.Initialize, payload: { tasks: data } });
       })
       .catch(error => {
         console.error("Error al cargar las tareas:", error);
       });
-  }, []); // El array vacío asegura que esto solo se ejecute una vez
+  }, []);
 
   const handleRemove = ({id}: TaskId): void => {
     dispatch({ type: TaskActionType.Remove, payload: { id } });
@@ -57,13 +57,12 @@ const App = (): JSX.Element => {
   }
 
   const handleRemoveAllCompleted = (): void => { 
-    // Esta función podría necesitar un endpoint específico en tu backend para borrar todas
     dispatch({ type: TaskActionType.ClearCompleted });
-    // Aquí puedes agregar la llamada a la API si tu backend lo soporta
   }
 
   const activeCount = tasks.filter(task => !task.completed).length
-  const completedCount = tasks.length - activeCount
+  // CORRECCIÓN: Eliminar la variable no utilizada que causaba un error de compilación
+  // const completedCount = tasks.length - activeCount
 
   const filteredTasks = tasks.filter(task => {
     if(filterSelected === TASK_FILTERS.ACTIVE) {
@@ -78,7 +77,7 @@ const App = (): JSX.Element => {
   const handleAddTask = ({title}: TaskTitle): void => {
     const newTask = {
       title, 
-      id: crypto.randomUUID(), // El ID se genera en el cliente para la UI
+      id: crypto.randomUUID(),
       completed: false
     }
 
@@ -89,11 +88,10 @@ const App = (): JSX.Element => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify(newTask), // El backend puede generar su propio ID
+      body: JSON.stringify(newTask),
     })
     .catch(error => {
       console.error("Error al agregar la tarea:", error);
-      // Aquí puedes agregar lógica para revertir el cambio si la API falla
     });
   }
 
@@ -122,6 +120,7 @@ const App = (): JSX.Element => {
           tasks={filteredTasks} />
           <Footer
             activeCount={activeCount}
+            // Utilizar la expresión directamente en el prop
             completedCount={tasks.length - activeCount}
             filterSelected={filterSelected}
             onClearCompleted={handleRemoveAllCompleted}

@@ -1,4 +1,4 @@
-import { type ListOfTasks, type TaskId, type Task as TaskType } from "../types";
+import { type ListOfTasks, type TaskId, type Task as TaskType } from "../types.d";
 import { Task } from "./Task";
 import { type FC } from 'react';
 import { useAutoAnimate } from "@formkit/auto-animate/react" 

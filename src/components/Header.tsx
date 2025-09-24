@@ -1,4 +1,4 @@
-import { type TaskTitle } from '../types'
+import { type TaskTitle } from '../types.d'
 import { CreateTask } from './CreateTask'
 import { type FC } from 'react'
 
