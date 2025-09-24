@@ -1,7 +1,6 @@
 # TodoMVC-TS
 
-Una aplicación de lista de tareas simple y eficiente, construida con React y TypeScript, siguiendo los estándares de diseño de TodoMVC.
-
+Una aplicación de lista de tareas simple y eficiente, construida con React y TypeScript
 ---
 
 ### Características Principales
