@@ -55,7 +55,7 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.
 
 El proyecto está desplegado y disponible en línea. Puedes verlo en el siguiente enlace:
 
-**URL:** `[PON AQUÍ LA URL DE TU PROYECTO EN NETLIFY]`
+**URL del Proyecto:** https://my-list-task-app.netlify.app/
 
 ![Captura de pantalla de la aplicación de tareas](public/task-app.png)
 
