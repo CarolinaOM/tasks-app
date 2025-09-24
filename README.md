@@ -1,4 +1,4 @@
-# TodoMVC-TS
+# Task List App
 
 Una aplicación de lista de tareas simple y eficiente, construida con React y TypeScript
 ---
@@ -49,10 +49,10 @@ Sigue estos pasos para instalar y ejecutar el proyecto en tu máquina local.
 
 ---
 
-### Despliegue en Netlify
+### Despliegue del Proyecto
 
 El proyecto está desplegado y disponible en línea. Puedes verlo en el siguiente enlace:
 
-**URL de Netlify:** `[PON AQUÍ LA URL DE TU PROYECTO EN NETLIFY]`
+**URL:** `[PON AQUÍ LA URL DE TU PROYECTO EN NETLIFY]`
 
 ---
