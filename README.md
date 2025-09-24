@@ -57,6 +57,6 @@ El proyecto está desplegado y disponible en línea. Puedes verlo en el siguient
 
 **URL:** `[PON AQUÍ LA URL DE TU PROYECTO EN NETLIFY]`
 
-![Captura de pantalla de la aplicación de tareas](task-app.png)
+![Captura de pantalla de la aplicación de tareas](public/task-app.png)
 
 ---
